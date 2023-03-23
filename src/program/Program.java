@@ -7,12 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//import entities.Product;
-
 public class Program {
 
     public static void main(String[] args) {
-        String path = "automato.dat";
+        String path = "/home/adena/Documentos/automato.dat";
 		
 	List<Transicao> list = new ArrayList<Transicao>();
         String[] inicio = null, fim = null, simbs = null;
@@ -91,7 +89,6 @@ public class Program {
         char mat[][]=new char[50][50];
         Passo1(qs, mat); 
         Passo2(qs, mat, simbs, list);
-        
     }
     
     public static void Passo1(Qs qs, char mat[][]){
@@ -105,11 +102,9 @@ public class Program {
                 }
             }
         }
-        
     }
     
     public static void Passo2(Qs qs, char mat[][], String[] simbs, List<Transicao> list){
-        
         String i0=null, i1=null, j0=null, j1=null;
         for(int i=1; i<qs.qtd.length; i++){
             for(int j=0; j<qs.qtd.length-1; j++){
@@ -133,20 +128,10 @@ public class Program {
                         mat[i][j]='Ø';
                     else
                         Passo3(qs, mat, simbs, list);
-                    
-                    
                 }
             }
         }
-        /*System.out.println("");
-        for(int l=1; l<qs.qtd.length; l++){
-            for(int k=0; k<qs.qtd.length-1; k++){
-                System.out.print(mat[l][k]+ " ");
-            }
-        System.out.println("");
-        }*/
         Imprime(mat, qs);
-        
     }
     
     public static void Passo3(Qs qs, char mat[][], String[] simbs, List<Transicao> list){
@@ -174,7 +159,6 @@ public class Program {
                         mat[i][j]='Ø';
                 }
             }
-        
         }
     }
     
@@ -190,7 +174,6 @@ public class Program {
                 b = p.getDestino();
             }
         }
-        
         return b;
     }
     
@@ -223,6 +206,5 @@ public class Program {
         for(int j=0; j<qs.qtd.length-1; j++){
             System.out.print(qs.qtd[j] + " ");
         }
-        
     }
 }
