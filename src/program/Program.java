@@ -12,7 +12,7 @@ import java.util.List;
 public class Program {
 
     public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato2.dat";
+        String path = "automato.dat";
 		
 	List<Transicao> list = new ArrayList<Transicao>();
         String[] inicio = null, fim = null, simbs = null;
