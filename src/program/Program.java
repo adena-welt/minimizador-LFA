@@ -6,11 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static program.Gui.text1;
 
 public class Program {
 
-    public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato.dat";
+    public static void main() {
+        String path = "/home/bryan/NetBeansProjects/minimizador-fla/src/program/automato.dat";
 		
 	List<Transicao> list = new ArrayList<Transicao>();
         String[] inicio = null, fim = null, simbs = null;
@@ -192,19 +193,19 @@ public class Program {
     }
     
     public static void Imprime(char mat[][], Qs qs){
-        System.out.println("");
+        text1.append("\n");
         for(int i=1; i<qs.qtd.length; i++){
             for(int j=0; j<qs.qtd.length-1; j++){
                 if(j==0){
-                    System.out.print(qs.qtd[i] + " ");
+                    text1.append(qs.qtd[i] + " ");
                 }
-                System.out.print(mat[i][j]+ "  ");
+                text1.append(mat[i][j]+ "  ");
             }
-        System.out.println("");
+            text1.append("\n");
         }
-        System.out.print("   ");
+        text1.append("   ");
         for(int j=0; j<qs.qtd.length-1; j++){
-            System.out.print(qs.qtd[j] + " ");
+            text1.append(qs.qtd[j] + " ");
         }
     }
 }
