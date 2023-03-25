@@ -71,14 +71,6 @@ public class Program {
             line = br.readLine();
             fim = line.split(","); 
             
-            /*System.out.println("qs = " + Arrays.toString(qs.qtd));
-            
-            System.out.println("simbolos = " + Arrays.toString(simbs));
-           
-            System.out.println("TRANSIÇÕES:");
-            for (Transicao p : list) {
-		System.out.println(p);
-            }*/
             text2.append("\n q's = " + Arrays.toString(qs.qtd));
             
             text2.append("\n simbolos = " + Arrays.toString(simbs));
