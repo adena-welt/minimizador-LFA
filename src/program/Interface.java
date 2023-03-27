@@ -2,12 +2,10 @@ package program;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.TextArea;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -77,11 +75,6 @@ public class Interface extends JFrame{
                     qs.setBounds(xq, yq,70,70);
                     add(qs);
                 }
-                
-                /*JButton qs = new JButton(vetqs.qtd[j]);
-                setLayout(null);
-                qs.setBounds(xq, yq,60,60);
-                add(qs);*/
                 xq+=80;
             }
         }
@@ -105,7 +98,7 @@ public class Interface extends JFrame{
         JTextArea texto = new JTextArea();
         texto.setBackground(new java.awt.Color(0,0,0,0));
         texto.setFont(fonte);
-        texto.setBounds(80*(qs.qtd.length+1), 50, 400, 500);
+        texto.setBounds(80*(qs.qtd.length+1), 50, 400, 700);
         
         texto.append("\n q's = " + Arrays.toString(qs.qtd));  
         texto.append("\n simbolos = " + Arrays.toString(simbs));
