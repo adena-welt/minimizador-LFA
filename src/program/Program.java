@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Program {
 
     public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato.dat";
+        String path = "/home/adena/Documentos/automato2.dat";
 		
-	List<Transicao> list = new ArrayList<Transicao>();
+	List<Transicao> list = new ArrayList<>();
         String[] inicio = null, fim = null, simbs = null;
         String aux=null, auxSim=null;
         int cont=0, cont2=0;
@@ -44,8 +45,8 @@ public class Program {
                 if(origem.equals(aux)){
                     cont++;
                     if(cont>1 && auxSim.equals(simbolo)){
-                        System.out.println("O autômato não pode ser minimizado");
-                        System.out.println("De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                        JOptionPane.showMessageDialog(null,"O autômato não pode ser minimizado.\n"
+                                + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                         System.exit(0);
                     }
                 }
@@ -55,9 +56,9 @@ public class Program {
                 aux = origem; auxSim = simbolo;
                 
                 if(cont>2){
-                    System.out.println("O autômato não pode ser minimizado");
-                    System.out.println("De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
-                    System.exit(0);
+                    JOptionPane.showMessageDialog(null,"O autômato não pode ser minimizado.\n"
+                                + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                        System.exit(0);
                 }
                 
 		line = br.readLine();
@@ -89,6 +90,10 @@ public class Program {
         char mat[][]=new char[50][50];
         Passo1(qs, mat); 
         Passo2(qs, mat, simbs, list);
+        
+        Interface tela = new Interface();
+        tela.imprimeMat(mat, qs);
+        tela.imprimeTransicoes(qs, simbs, list, inicio, fim);
     }
     
     public static void Passo1(Qs qs, char mat[][]){
