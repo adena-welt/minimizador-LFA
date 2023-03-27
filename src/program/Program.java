@@ -79,7 +79,9 @@ public class Program {
             }
 	}
 	catch (IOException e) {
+            JOptionPane.showMessageDialog(null,"Error: " + e.getMessage());
             System.out.println("Error: " + e.getMessage());
+            System.exit(0);
 	}
         
         System.out.println("Inicio = " + Arrays.toString(inicio));

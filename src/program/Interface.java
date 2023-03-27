@@ -22,26 +22,71 @@ public class Interface extends JFrame{
         for(int i=1; i<vetqs.qtd.length; i++){
             for(int j=0; j<vetqs.qtd.length-1; j++){
                 if(j==0){
-                    JButton qs = new JButton(vetqs.qtd[i]);
-                    setLayout(null);
-                    qs.setBounds(10, i*70,60,60);
-                    add(qs);
+                    if(vetqs.ehfinal[i]==1 && vetqs.inicial[i]==1){
+                        JButton qs = new JButton("→*" + vetqs.qtd[i]);
+                        setLayout(null);
+                        qs.setBounds(10, i*80,70,70);
+                        add(qs);
+                    }
+                    else if(vetqs.ehfinal[i]==1){
+                        JButton qs = new JButton("*" + vetqs.qtd[i]);
+                        setLayout(null);
+                        qs.setBounds(10, i*80,70,70);
+                        add(qs);
+                    }
+                    else if(vetqs.inicial[i]==1){
+                        JButton qs = new JButton("→" + vetqs.qtd[i]);
+                        setLayout(null);
+                        qs.setBounds(10, i*80,70,70);
+                        add(qs);
+                    }
+                    else{
+                        JButton qs = new JButton(vetqs.qtd[i]);
+                        setLayout(null);
+                        qs.setBounds(10, i*80,70,70);
+                        add(qs);
+                    }
                 }
                 if(j<i){
-                    configuraBotao(80+j*80, i*70, i, j, mat);
+                    configuraBotao(90+j*80, i*80, i, j, mat);
                 }
             }
-            int xq=80, yq=70*vetqs.qtd.length;
+            int xq=90, yq=80*vetqs.qtd.length;
             for(int j=0; j<vetqs.qtd.length-1; j++){
-                JButton qs = new JButton(vetqs.qtd[j]);
+                if(vetqs.ehfinal[j]==1 && vetqs.inicial[j]==1){
+                    JButton qs = new JButton("→*" + vetqs.qtd[i]);
+                    setLayout(null);
+                    qs.setBounds(xq, yq,70,70);
+                    add(qs);
+                }
+                else if(vetqs.ehfinal[j]==1){
+                    JButton qs = new JButton("*" + vetqs.qtd[j]);
+                    setLayout(null);
+                    qs.setBounds(xq, yq,70,70);
+                    add(qs);
+                }
+                else if(vetqs.inicial[j]==1){
+                    JButton qs = new JButton("→" + vetqs.qtd[j]);
+                    setLayout(null);
+                    qs.setBounds(xq, yq,70,70);
+                    add(qs);
+                }
+                else{
+                    JButton qs = new JButton(vetqs.qtd[j]);
+                    setLayout(null);
+                    qs.setBounds(xq, yq,70,70);
+                    add(qs);
+                }
+                
+                /*JButton qs = new JButton(vetqs.qtd[j]);
                 setLayout(null);
                 qs.setBounds(xq, yq,60,60);
-                add(qs);
+                add(qs);*/
                 xq+=80;
             }
         }
         setTitle("Autômato Minimizado");
-        setSize(1000,600);
+        setSize(1000,700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -51,7 +96,7 @@ public class Interface extends JFrame{
         JButton jb = new JButton(Character.toString(mat[i][j]));
         jb.setLayout(null);
         jb.setBackground(Color.GRAY);
-        jb.setBounds(x, y, 60, 60);
+        jb.setBounds(x, y, 70, 70);
         add(jb);
     }
     
