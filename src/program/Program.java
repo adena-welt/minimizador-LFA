@@ -92,10 +92,12 @@ public class Program {
         char mat[][]=new char[50][50];  //passo 1
         Passo2(qs, mat); 
         Passo3T1(qs, mat, simbs, list);
+        /*Interface3 tela = new Interface3();
+        tela.imprimeMat(mat, qs);
+        tela.imprimeTransicoes(qs, simbs, list, inicio, fim);*/
         
         Interface tela = new Interface();
-        tela.imprimeMat(mat, qs);
-        tela.imprimeTransicoes(qs, simbs, list, inicio, fim);
+        tela.imprimeMat(mat, qs, simbs, list, inicio, fim);
     }
     
     public static void Passo2(Qs qs, char mat[][]){     //passo 2
