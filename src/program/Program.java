@@ -45,8 +45,9 @@ public class Program {
                 if(origem.equals(aux)){     //caso possua exibe a mensagem de que ele nao pode ser minimizado
                     cont++;
                     if(cont>1 && auxSim.equals(simbolo)){
-                        JOptionPane.showMessageDialog(null,"O autômato não pode ser minimizado.\n"
-                                + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                        JOptionPane.showMessageDialog(null, """
+                            O aut\u00f4mato n\u00e3o pode ser minimizado.
+                            De cada estado n\u00e3o podem partir m\u00faltiplas transi\u00e7\u00f5es com um mesmo s\u00edmbolo.""");
                         System.exit(0);
                     }
                 }
@@ -56,8 +57,9 @@ public class Program {
                 aux = origem; auxSim = simbolo;
                 
                 if(cont>2){
-                    JOptionPane.showMessageDialog(null,"O autômato não pode ser minimizado.\n"
-                                + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                    JOptionPane.showMessageDialog(null, """
+                        O aut\u00f4mato n\u00e3o pode ser minimizado.
+                        De cada estado n\u00e3o podem partir m\u00faltiplas transi\u00e7\u00f5es com um mesmo s\u00edmbolo.""");
                         System.exit(0);
                 }
                 
@@ -92,12 +94,9 @@ public class Program {
         char mat[][]=new char[50][50];  //passo 1
         Passo2(qs, mat); 
         Passo3T1(qs, mat, simbs, list);
-        /*Interface3 tela = new Interface3();
-        tela.imprimeMat(mat, qs);
-        tela.imprimeTransicoes(qs, simbs, list, inicio, fim);*/
         
         Interface tela = new Interface();
-        tela.imprimeMat(mat, qs, simbs, list, inicio, fim);
+        tela.imprime(mat, qs, simbs, list, inicio, fim);
     }
     
     public static void Passo2(Qs qs, char mat[][]){     //passo 2
@@ -214,5 +213,6 @@ public class Program {
         for(int j=0; j<qs.qtd.length-1; j++){
             System.out.print(qs.qtd[j] + " ");
         }
+        System.out.println("\n");
     }
 }
