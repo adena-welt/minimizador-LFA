@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Program {
 
     public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato2.dat";//localiza o arquivo
+        String path = "/home/adena/Documentos/automato3.dat";//localiza o arquivo
 		
 	List<Transicao> list = new ArrayList<>();
         String[] inicio = null, fim = null, simbs = null;
@@ -45,9 +45,8 @@ public class Program {
                 if(origem.equals(aux)){     //caso possua exibe a mensagem de que ele nao pode ser minimizado
                     cont++;
                     if(cont>1 && auxSim.equals(simbolo)){
-                        JOptionPane.showMessageDialog(null, """
-                            O aut\u00f4mato n\u00e3o pode ser minimizado.
-                            De cada estado n\u00e3o podem partir m\u00faltiplas transi\u00e7\u00f5es com um mesmo s\u00edmbolo.""");
+                        JOptionPane.showMessageDialog(null, "O autômato não pode ser minimizado."+
+                            "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                         System.exit(0);
                     }
                 }
@@ -57,10 +56,9 @@ public class Program {
                 aux = origem; auxSim = simbolo;
                 
                 if(cont>2){
-                    JOptionPane.showMessageDialog(null, """
-                        O aut\u00f4mato n\u00e3o pode ser minimizado.
-                        De cada estado n\u00e3o podem partir m\u00faltiplas transi\u00e7\u00f5es com um mesmo s\u00edmbolo.""");
-                        System.exit(0);
+                    JOptionPane.showMessageDialog(null, "O autômato não pode ser minimizado."+
+                        "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                    System.exit(0);
                 }
                 
 		line = br.readLine();

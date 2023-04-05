@@ -23,7 +23,7 @@ public class Interface extends JFrame {
         contentPane.setLayout(null);
 
         JScrollPane scroll = new JScrollPane();
-        scroll.setBounds(0, 0, 1050, 657);
+        scroll.setBounds(0, 0, 1052, 665);
         contentPane.add(scroll);
 
         JPanel panel = new JPanel();
