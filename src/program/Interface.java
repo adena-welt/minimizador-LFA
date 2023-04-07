@@ -23,14 +23,17 @@ public class Interface extends JFrame {
         contentPane.setLayout(null);
 
         JScrollPane scroll = new JScrollPane();
-        scroll.setBounds(0, 0, 1052, 665);
+        scroll.setBounds(0, 0, 1052, 660);
         contentPane.add(scroll);
 
         JPanel panel = new JPanel();
         scroll.setViewportView(panel);
         panel.setLayout(null);
-
-        panel.setPreferredSize(new Dimension(5000, 5000));
+        
+        int width = 450;
+        if(vetqs.qtd.length>7)
+           width = vetqs.qtd.length*50;
+        panel.setPreferredSize(new Dimension(80*(vetqs.qtd.length+1)+width, 80*(vetqs.qtd.length+1)));
 
         for(int i=1; i<vetqs.qtd.length; i++){
             if(vetqs.ehfinal[i]==1 && vetqs.inicial[i]==1){
@@ -112,10 +115,13 @@ public class Interface extends JFrame {
     
     public void imprimeTransicoes(Qs qs, String[] simbs, List<Transicao> list, String[] inicio, String[] fim, JPanel panel){
         Font fonte = new Font("Arial", Font.BOLD, 18);
+        int width = 450;
+        if(qs.qtd.length>7)
+           width = qs.qtd.length*50;
         JTextArea texto = new JTextArea();
         texto.setBackground(new java.awt.Color(0,0,0,0));
         texto.setFont(fonte);
-        texto.setBounds(80*(qs.qtd.length+1), 80, 900, 700);
+        texto.setBounds(80*(qs.qtd.length+1), 80, width, (qs.qtd.length*2+5)*25);
         texto.append("q's = " + Arrays.toString(qs.qtd));  
         texto.append("\nsimbolos = " + Arrays.toString(simbs));
         texto.append("\nTRANSIÇÕES:");

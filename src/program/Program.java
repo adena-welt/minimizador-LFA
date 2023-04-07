@@ -15,8 +15,8 @@ public class Program {
 		
 	List<Transicao> list = new ArrayList<>();
         String[] inicio = null, fim = null, simbs = null;
-        String aux=null, auxSim=null;
-        int cont=0, cont2=0;
+        String aux = null, auxSim = null;
+        int cont = 0, cont2 = 0;
         Qs qs = new Qs();
 		
 	try (BufferedReader br = new BufferedReader(new FileReader(path))) {    //leitura do arquivo
@@ -37,25 +37,25 @@ public class Program {
 		Transicao elementos = new Transicao(origem, simbolo, destino);  //cria um elemento da classe transicao
 		list.add(elementos);    //adiciona o elemento na lista
 		
-                if(cont2==0){       //verifica se o automato possui multiplas transicoes ou 2 com o mesmo simbolo
-                    aux=origem;
-                    auxSim=simbolo;
+                if(cont2 == 0){       //verifica se o automato possui multiplas transicoes ou 2 com o mesmo simbolo
+                    aux = origem;
+                    auxSim = simbolo;
                 }
                 
                 if(origem.equals(aux)){     //caso possua exibe a mensagem de que ele nao pode ser minimizado
                     cont++;
-                    if(cont>1 && auxSim.equals(simbolo)){
+                    if(cont > 1 && auxSim.equals(simbolo)){
                         JOptionPane.showMessageDialog(null, "O autômato não pode ser minimizado."+
                             "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                         System.exit(0);
                     }
                 }
                 else
-                    cont=1;
+                    cont = 1;
                 
                 aux = origem; auxSim = simbolo;
                 
-                if(cont>2){
+                if(cont > 2){
                     JOptionPane.showMessageDialog(null, "O autômato não pode ser minimizado."+
                         "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                     System.exit(0);
@@ -89,7 +89,7 @@ public class Program {
 
         qs.qsIniciaisFinais(inicio, fim, qs);   //funcao da classe "Qs" para definir quais são iniciais ou finais
         
-        char mat[][]=new char[50][50];  //passo 1
+        char mat[][] = new char[50][50];  //passo 1
         Passo2(qs, mat); 
         Passo3T1(qs, mat, simbs, list);
         
@@ -98,10 +98,10 @@ public class Program {
     }
     
     public static void Passo2(Qs qs, char mat[][]){     //passo 2
-        for(int i=1; i<qs.qtd.length; i++){     //percorre a matriz
-            for(int j=0; j<qs.qtd.length-1; j++){
-                if(j<i){
-                    if(qs.ehfinal[i]==qs.ehfinal[j])    //caso os dois elementos sejam equivalentes
+        for(int i = 1; i < qs.qtd.length; i++){     //percorre a matriz
+            for(int j = 0; j < qs.qtd.length-1; j++){
+                if(j < i){
+                    if(qs.ehfinal[i] == qs.ehfinal[j])    //caso os dois elementos sejam equivalentes
                         mat[i][j] = 'O';                //é adicionado um O na matriz
                     else
                         mat[i][j]='X';                  //caso não sejam é adicionado um X
@@ -111,10 +111,10 @@ public class Program {
     }
     
     public static void Passo3T1(Qs qs, char mat[][], String[] simbs, List<Transicao> list){   //passo 3 T = 1
-        String i0=null, i1=null, j0=null, j1=null;
-        for(int i=1; i<qs.qtd.length; i++){             //percorre a matriz
-            for(int j=0; j<qs.qtd.length-1; j++){
-                if(mat[i][j]=='O'){                     //caso ainda seja equivalente
+        String i0 = null, i1 = null, j0 = null, j1 = null;
+        for(int i = 1; i < qs.qtd.length; i++){             //percorre a matriz
+            for(int j = 0; j < qs.qtd.length-1; j++){
+                if(mat[i][j] == 'O'){                     //caso ainda seja equivalente
                     for (Transicao p : list) {          //percorre a lista
                         if(qs.qtd[i].equals(p.getOrigem()) && simbs[0].equals(p.getSimbolo()))
                             i0 = p.getDestino();        //destino de i0 (primeiro elemento com simbolo 0)
@@ -141,34 +141,37 @@ public class Program {
     
     public static void Passo3T2(Qs qs, char mat[][], String[] simbs, List<Transicao> list){ //passo 3 T = 2
         
-        String alf=simbs[0], alf2=simbs[1];
+        String alf = simbs[0], alf2 = simbs[1];
         String a, b;
-        for(int i=1; i<qs.qtd.length; i++){         //percorre a matriz
-            for(int j=0; j<qs.qtd.length-1; j++){
-                if(mat[i][j]=='O'){                 //caso a posição esteja marcada como equivalente
-                    a=Verifica(qs, mat, simbs,list,i, alf, alf);        //chama a função verifica com i como alfabeto 00
-                    b=Verifica(qs, mat, simbs,list,j, alf, alf);      //chama a função verifica com j como alfabeto 00
+        for(int i = 1; i < qs.qtd.length; i++){         //percorre a matriz
+            for(int j = 0; j < qs.qtd.length-1; j++){
+                if(mat[i][j] == 'O'){                 //caso a posição esteja marcada como equivalente
+                    a = Verifica(qs, mat, simbs,list,i, alf, alf);        //chama a função verifica com i como alfabeto 00
+                    b = Verifica(qs, mat, simbs,list,j, alf, alf);      //chama a função verifica com j como alfabeto 00
                     if(Equivalente(a, b, qs) == 0)                    //verifica se a e b são equivalentes
                         mat[i][j]='Ø';
-                    a=Verifica(qs, mat, simbs,list,i, alf, alf2);           //i com alfabeto 01
-                    b=Verifica(qs, mat, simbs,list,j, alf, alf2);         //j com alfabeto 01
+                    
+                    a = Verifica(qs, mat, simbs,list,i, alf, alf2);           //i com alfabeto 01
+                    b = Verifica(qs, mat, simbs,list,j, alf, alf2);         //j com alfabeto 01
                     if(Equivalente(a, b, qs) == 0)
                         mat[i][j]='Ø';
-                    a=Verifica(qs, mat, simbs,list,i, alf2, alf);     //i com alfabeto 10
-                    b=Verifica(qs, mat, simbs,list, j, alf2, alf);  //j com alfabeto 10
+                    
+                    a = Verifica(qs, mat, simbs,list,i, alf2, alf);     //i com alfabeto 10
+                    b = Verifica(qs, mat, simbs,list, j, alf2, alf);  //j com alfabeto 10
                     if(Equivalente(a, b, qs) == 0)
                         mat[i][j]='Ø';
-                    a=Verifica(qs, mat, simbs,list,i, alf2, alf2);        //i com alfabeto 11
-                    b=Verifica(qs, mat, simbs,list,j, alf2, alf2);      //j com alfabeto 11
+                    
+                    a = Verifica(qs, mat, simbs,list,i, alf2, alf2);        //i com alfabeto 11
+                    b = Verifica(qs, mat, simbs,list,j, alf2, alf2);      //j com alfabeto 11
                     if(Equivalente(a, b, qs) == 0)
-                        mat[i][j]='Ø';                               //caso não forem equivalentes marca com o simbolo Ø
+                        mat[i][j] = 'Ø';                               //caso não forem equivalentes marca com o simbolo Ø
                 }
             }
         }
     }
     
     public static String Verifica(Qs qs, char mat[][], String[] simbs, List<Transicao> list, int i, String alf, String alf2){
-        String a=null, b=null;
+        String a = null, b = null;
         for (Transicao p : list) {  
             if(qs.qtd[i].equals(p.getOrigem()) && alf.equals(p.getSimbolo())){  //vê pra onde vai a primeira transição
                 a = p.getDestino();
@@ -183,33 +186,33 @@ public class Program {
     }
     
     public static int Equivalente(String i0, String j0, Qs qs){
-        int lin=0, col=0;
-        for(int i=0; i<qs.qtd.length; i++){     //percorre o vetor de qs, salva a posição do i e do j e verifica se sao finais
+        int lin = 0, col = 0;
+        for(int i = 0; i < qs.qtd.length; i++){     //percorre o vetor de qs, salva a posição do i e do j e verifica se sao finais
             if(qs.qtd[i].equals(i0))
-                lin=qs.ehfinal[i];
+                lin = qs.ehfinal[i];
             if(qs.qtd[i].equals(j0))
-                col=qs.ehfinal[i];
+                col = qs.ehfinal[i];
         }
         
-        if(lin==col)    //caso os dois sejam equivalentes retorna 1
+        if(lin == col)    //caso os dois sejam equivalentes retorna 1
             return 1;
         return 0;       //se não forem equivalentes retorna 0
     }
     
     public static void Imprime(char mat[][], Qs qs){    //impressão da matriz
         System.out.println("");
-        for(int i=1; i<qs.qtd.length; i++){             
-            for(int j=0; j<qs.qtd.length-1; j++){
-                if(j==0){
+        for(int i = 1; i < qs.qtd.length; i++){             
+            for(int j = 0; j<qs.qtd.length-1; j++){
+                if(j == 0){
                     System.out.print(qs.qtd[i] + " ");
                 }
-                System.out.print(mat[i][j]+ "  ");
+                System.out.print(mat[i][j]+ "\t");
             }
         System.out.println("");
         }
         System.out.print("   ");
-        for(int j=0; j<qs.qtd.length-1; j++){
-            System.out.print(qs.qtd[j] + " ");
+        for(int j = 0; j < qs.qtd.length-1; j++){
+            System.out.print(qs.qtd[j] + "\t");
         }
         System.out.println("\n");
     }
