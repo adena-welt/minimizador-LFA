@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
+import static program.Gui.text1;
+import static program.Gui.text2;
 
 public class Program {
 
-    public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato.dat";
+    public static void main() {
+        String path = "/home/adena/Documentos/automato2.dat";
 		
 	List<Transicao> list = new ArrayList<Transicao>();
         String[] inicio = null, fim = null, simbs = null;
@@ -44,8 +47,8 @@ public class Program {
                 if(origem.equals(aux)){
                     cont++;
                     if(cont>1 && auxSim.equals(simbolo)){
-                        System.out.println("O autômato não pode ser minimizado");
-                        System.out.println("De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                        JOptionPane.showMessageDialog(null,"O autômato não pode ser minimizado.\n"
+                                + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                         System.exit(0);
                     }
                 }
@@ -55,8 +58,8 @@ public class Program {
                 aux = origem; auxSim = simbolo;
                 
                 if(cont>2){
-                    System.out.println("O autômato não pode ser minimizado");
-                    System.out.println("De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
+                    JOptionPane.showMessageDialog(null, "O autômato não pode ser minimizado.\n"
+                            + "De cada estado não podem partir múltiplas transições com um mesmo símbolo.");
                     System.exit(0);
                 }
                 
@@ -68,21 +71,24 @@ public class Program {
             line = br.readLine();
             fim = line.split(","); 
             
-            System.out.println("qs = " + Arrays.toString(qs.qtd));
+            text2.append("\n q's = " + Arrays.toString(qs.qtd));
             
-            System.out.println("simbolos = " + Arrays.toString(simbs));
+            text2.append("\n simbolos = " + Arrays.toString(simbs));
            
-            System.out.println("TRANSIÇÕES:");
+            text2.append("\n TRANSIÇÕES:");
+            
             for (Transicao p : list) {
-		System.out.println(p);
+		String listaComoString = p.toString();
+                text2.append("\n " + listaComoString);
             }
+            
 	}
 	catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
 	}
         
-        System.out.println("Inicio = " + Arrays.toString(inicio));
-        System.out.println("Fim = " + Arrays.toString(fim));
+        text2.append("\n Inicio = " + Arrays.toString(inicio));
+        text2.append("\n Fim = " + Arrays.toString(fim));
 
         qs.qsIniciaisFinais(inicio, fim, qs);
         
@@ -192,19 +198,19 @@ public class Program {
     }
     
     public static void Imprime(char mat[][], Qs qs){
-        System.out.println("");
+        text1.append("\n");
         for(int i=1; i<qs.qtd.length; i++){
             for(int j=0; j<qs.qtd.length-1; j++){
                 if(j==0){
-                    System.out.print(qs.qtd[i] + " ");
+                    text1.append(" " + qs.qtd[i] + " ");
                 }
-                System.out.print(mat[i][j]+ "  ");
+                text1.append(mat[i][j]+ "  ");
             }
-        System.out.println("");
+            text1.append("\n");
         }
-        System.out.print("   ");
+        text1.append("   ");
         for(int j=0; j<qs.qtd.length-1; j++){
-            System.out.print(qs.qtd[j] + " ");
+            text1.append(" " + qs.qtd[j]);
         }
     }
 }
