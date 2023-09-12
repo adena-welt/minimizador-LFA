@@ -1,2 +1,2 @@
 # minimizador-fla
-trabalho da materia de lfa do hugo
+Trabalho de minimizador de autômatos da matéria Linguagens Formais e Autômatos
