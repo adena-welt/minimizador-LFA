@@ -94,7 +94,7 @@ public class Gui extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Gui().setVisible(true);
-                Program.main();
+                Program.main(args);
             }
         });
     }
