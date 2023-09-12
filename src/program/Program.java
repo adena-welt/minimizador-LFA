@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Program {
 
     public static void main(String[] args) {
-        String path = "/home/adena/Documentos/automato3.dat";//localiza o arquivo
+        String path = "/home/adena/Documentos/automato.dat";//localiza o arquivo
 		
 	List<Transicao> list = new ArrayList<>();
         String[] inicio = null, fim = null, simbs = null;
